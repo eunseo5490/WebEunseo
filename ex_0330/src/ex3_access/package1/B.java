@@ -1,0 +1,7 @@
+package ex3_access.package1;
+
+public class B { //public으로 선언
+	//A 클래스를 필드로 갖는다.
+	A a; //A 클래스가 default로 선언되어 있어서 사용 가능
+
+}

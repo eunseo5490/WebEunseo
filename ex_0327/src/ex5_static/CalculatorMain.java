@@ -10,5 +10,17 @@ public class CalculatorMain {
 		System.out.println(Calculator.pi);
 		System.out.println(Calculator.plus(3,4));
 		System.out.println(Calculator.minus(24,4));
+		
+		
+		
+		Calculator c = new Calculator();
+		System.out.println(c.pi);
+		Calculator c2 = new Calculator();
+		System.out.println(c2.pi);
+
+
+		
+		
+		
 	}
 }

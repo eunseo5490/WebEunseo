@@ -26,7 +26,7 @@ public class Car {
 	}
 	
 	//모델, 색상, 최고속도를 초기화하는 생성자
-	public Car(String model, String colo, int maxSpeed) {
+	public Car(String model, String color, int maxSpeed) {
 		this(model, color);
 		this.maxSpeed = maxSpeed;
 		

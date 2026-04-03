@@ -10,7 +10,7 @@ public class CalculaterMain {
 		//Calculator car = new getResult();
 		
 		System.out.println("숫자1, 연산기호, 숫자2를 순서대로 입력해주세요.");
-		);
+		
 		
 		
 		

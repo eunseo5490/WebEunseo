@@ -1,5 +1,7 @@
 package app;
 
+import member.Member;
+
 import service.MemberService;
 
 import java.util.Scanner;
@@ -18,8 +20,11 @@ public class Main {
 		int age = sc.nextInt();
 		
 		Member user = new Member(name, age);
+		MemberService ms = new MemberService();
 		
-		user.register();
+		user.register(member);
+		
+		
 		
 		
 	}

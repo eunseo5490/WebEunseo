@@ -25,7 +25,7 @@ class C extends A {
 	}
 }
 
-class D extends B,C {
+class D extends B {
 	
 }
 

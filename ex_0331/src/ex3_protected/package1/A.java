@@ -2,13 +2,13 @@ package ex3_protected.package1;
 
 public class A {
 	
-	protected String field;
+	public String field;
 	
-	protected A() {
+	public A() {
 		
 	}
 	
-	protected void method() {
+	public void method() {
 		
 	}
 

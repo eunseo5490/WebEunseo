@@ -9,8 +9,9 @@ class Car {
 class HybridCar extends Car {
 	int electricGauge;
 	
-	@Override
-	public void Hy
+	public void Hybrid() {
+		
+	}
 }
 
 

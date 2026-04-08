@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class PatternExample {
 	public static void main(String[] args) {
+		/*
 		String regExp = "(02|010)-[0-9]{3,4}-[0-9]{4}";
 		String data = "010-123-4567";
 		boolean result = Pattern.matches(regExp, data);
@@ -58,13 +59,20 @@ public class PatternExample {
 		String email = "eunseo5490@gmail.ai";
 		regExp = "[a-zA-z0-9_]+@[a-z].[a-z]{2,}";
 		System.out.println(email.matches(regExp));
-
 		
 		
-				
+		String[] arr1 = {"123","abc","4567","a1b2"};
 		
+		for(int i=0; i<arr1.length; i++) {
+			System.out.println(arr1[i].matches("[가-힣]"));
+		}
+		*/	
 		
+		String[] arr = {"홍길동", "Tom","김철수","a1","김이박조길동"};
 		
+		for(int i=0; i<arr.length; i++) {
+			System.out.println(arr[i].matches("[가-힣]{2,5}"));
+		}
 		
 		
 		

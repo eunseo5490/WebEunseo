@@ -338,10 +338,28 @@ nanoTime()
 - regex.Pattern
 
 
+컬렉션 프레임워크
+- 순서가 있고, 내용이 중복되도 되는 자료구조
+ArrayList
 
+데이터의 추가
+add(E e)
+add(int index, E e);
 
+데이터의 수정
+set(int index, E e);
 
+데이터의 조회
+get(int index);
 
+데이터의 삭제
+remove(int index);
+
+포함하고 있는지 여부
+contains(E e);
+
+비어있는지 여부
+isEmpty();
 
 
 

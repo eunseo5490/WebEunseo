@@ -24,8 +24,16 @@ public class Bingo {
 
 		// 앞에서 25개만 사용
 		List<Integer> bingo = numbers.subList(0, 25);
+		
+		for(int i = 0; i < bingo.size(); i++) {
+		    System.out.print(bingo.get(i) + " ");
+		    
+		    // 5개마다 줄바꿈
+		    if((i + 1) % 5 == 0) {
+		        System.out.println();
+		    }
+		}
 
-		System.out.println(bingo);
 		
 		
 		

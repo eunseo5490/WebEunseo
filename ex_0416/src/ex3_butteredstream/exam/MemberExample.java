@@ -19,19 +19,15 @@ public class MemberExample {
             while ((line = br.readLine()) != null) {
             	//1. CSV분리
                 String[] data = line.split(",");
-
-                if (data.length < 2) {
-                    continue;
-                }
-
                 String name = data[0];
                 int age = Integer.parseInt(data[1]);
-
+                
+                //3. 조건 검사
                 if (age >= 30) {
-                    bw.write(name + "," + age);
-                    bw.newLine();
+                	bw.write(name+","+age);
+                	bw.newLine(); //개행
                 }
-            }
+            } 
 
             br.close();
             bw.close();

@@ -1,0 +1,35 @@
+---
+
+[ 2 출제 문제 (String) ]
+
+이메일을 입력하면 아이디와 도메인을 나눠 정리해서 보여주는 코드
+- 조건 : String[], split("@") 사용
+
+
+- 결과 예시1
+이메일을 입력해주세요.
+> java1234@gmail.com
+
+[ 사용자 정보 ]
+아이디: java1234
+도메인: gmail.com
+
+
+- 답안 코드 (결과 예시1과 결과 동일)
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.print("이메일을 입력해주세요.\n> ");
+	String email = sc.nextLine();
+
+	String[] parts = email.split("@");
+
+	String id = parts[0];
+	String domain = parts[1];
+
+	System.out.println("\n[ 사용자 정보 ]");
+	System.out.println("아이디: " + id);
+	System.out.println("도메인: " + domain);
+}
+
+---

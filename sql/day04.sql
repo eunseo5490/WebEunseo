@@ -1,230 +1,264 @@
+-- 요일 이름을 반환(영어)
+SELECT DAYNAME(curdate());
 
--- length() -> 몇바이트 인지 반환
-select title, length(title) from film_practice;
+-- LAST_DAY(DATE)
+-- 월의 마지막날 구하기
+SELECT
+	CURDATE(),
+	LAST_DAY('2026-05-01');
 
--- 테이블에 저장된 데이터가 아니라, 값 자체를 함수에 직접 전달해서
--- 결과를 확인할 수 있다.
-select length('가나다');
+-- DATE_ADD(날짜, INTERVAL 단위)
+-- INTERVAL 단위 : 얼마만큼을 단위로 더할 것인가
+SELECT
+	NOW(),
+	DATE_ADD(NOW(), INTERVAL 10 DAY);
+	DATE_ADD(NOW(), INTERVAL 3 MONTH);
+	DATE_ADD(NOW(), INTERVAL 2 HOUR);
 
--- char_length()
--- 글자 수를 반환한다.
--- 한글 이모지를 포함해서 실제 글자 수를 보고싶을 때 사용한다.
-select char_length('가나다');
-select title, char_length(title) from film_practice;
+-- DATE_SUB()
+-- 날짜에서 기간을 뺀다.
+SELECT
+	NOW(),
+	DATE_SUB(NOW(), INTERVAL 10 DAY),
+	DATE_SUB(NOW(), INTERVAL 3 MONTH),
+	DATE_SUB(NOW(), INTERVAL 2 HOUR);
 
--- select 절에 사용하는 것은 조회해서 확인을 하겠다.
+-- 날짜 간의 차이 계산
+-- DATEDIFF()
+-- 두 날짜 사이의 차이를 "일수"로 계산한다.
+SELECT
+	DATEDIFF('2026-05-10','2026-04-30'),
+	DATEDIFF('2026-04-30','2026-05-10');
 
--- 영화제목이 10자 이하인 것만 영화제목(title)을 조회하세요
-select title, char_length(title)
-from film_practice fp 
-where char_length(title) <= 10;
+-- 자주 쓰는 포맷 기호
+-- %Y : 4자리 년도		2026
+-- %y : 2자리 년도		26
+-- %m : 2자리 월		04
+-- %c : 1~2자리 월	4
+-- %d : 2자리 일		01
+-- %e : 1~2자리 일	1
+-- %H : 24시간제 시	15
+-- %h : 12시간제 시	03
+-- %i : 분
+-- %s : 초
+-- %W : 요일명		Thursday
+-- %a : 잛은 요일명	Thu
+select date_format('2026-04-30 15:20:10', '%Y년 %m월 %d일 %H시 %i분');
 
--- Upper(), UCASE()
--- 문자열을 대문자로 변환
-select upper('Hello MySQL');
+-- MAKEDATE(연도, 일수)
+select MAKEDATE(2026,32);
 
--- 검색에서 대소문자 무시하고 비교하고 싶을 때 사용한다.
-
-create table customer_practice as
-select * from sakila.customer;
-
-select * from customer_practice;
-
--- LOWER()
--- 모든 글자를 소문자로 출력
-
--- CUSTOMER 테이블의 이름을 소문자로 조회하기
-select FIRST_NAME,LOWER(FIRST_NAME) from CUSTOMER_PRACTICE;
-
--- 테이블에 들어있는 데이터가 대문자인지 소문자인지 모를 때
--- 전부다 대문자로 바꾸던지, 소문자로 변환해서 사용
-
--- TRIM(), LTRIM(), RTRIM()
--- 공백제거하기
-
-select TRIM('    HI    '); -- 양쪽 공백 제거
-select LTRIM('    HI    '); -- 왼쪽 공백 제거
-select RTRIM('    HI    '); -- 오른쪽 공백 제거
-
--- 특정 문자 지우기 문법 제공
-select TRIM('x' from 'xxxHELLOxxx');
-
--- LPAD(), RPAD()
--- 왼쪽/오른쪽에 문자열을 채워 넣는 함수
--- LPAD(문자열, 총길이, 채울문자)
-
-select LPAD('HELLO',10,'*');
-select RPAD('HELLO',10,'*');
-
--- 문자열이 길이를 초과하게 되면 자른다.
-select LPAD('ABCDEF',4,'0');
-
--- 고객테이블에서 회원번호의 자리수를 5로 만들고
--- 빈자리는 0으로 채워 고객 번호와 이름을 조회하세요.
-select LPAD(customer_id,5,'0'), first_name
-from customer_practice cp;
-
--- SUBSTRING(문자열,시작위치,길이)
--- SUBSTR()
--- MID()
-
-select SUBSTRING('Hello MySQL', 1,5);
--- 글자를 셀 때 1부터 시작한다.
-
--- 길이를 생략하면 끝까지 자른다.
-select substr('Hello MySQL',7);
-
--- 음수 사용 가능함(뒤에서부터 자른다.)
-select mid('Hello MySQL',-5);
-
--- LEFT(), RIGHT()
--- 문자열에서 왼쪽/오른쪽에서 원하는 길이만큼 잘라서 반환하는 함수
-
-select 
-	LEFT('Hello',2),
-	right('Hello',2);
-
--- '900101-1234567' 문자열에서 주민번호 앞 6자리만 자르기
-select left('900101-1234567',6);
--- photo.png에서 파일 확장하 추출하기
-select right('photo.png',4);
-
--- INSTR(전체 문자열,찾을 문자열)
--- 찾을 문자열이 시작되는 위치번호를 반환
--- 위치번호는 1부터 시작
--- 찾지 못하면 0을 반환한다.
-
-select
-	INSTR('HELLO','L'),
-	INSTR('사과바나나포도','바나나'),
-	INSTR('사과바나나포도','딸기');
-
--- 이메일에서 @위치 찾기
--- 'USER01@TEST.COM'
-
--- 이메일에서 아이디 부분을 추출하기
-select
-	MID(
-	'USER01@TEST.COM',
-	1,
-	INSTR('USER01@TEST.COM','@')-1);
-
-select * from customer_practice cp;
-
--- 고객 테이블에서 고객번호와 이메일에서 추출한 아이디를
--- 조회하세요
-
-select 
-	CUSTOMER_ID, 
-	MID(EMAIL,1,INSTR(EMAIL,'@')-1)
-from customer_practice cp;
-
--- 고객테이블에서 이메일에 @sakilacustomer.org가 포함된
--- 고객객의 고객번호와 이름 조회하세요
-
-select customer_id, first_name
-from customer_practice cp
-where instr(email, '@sakilacustomer.org') <> 0;
-
--- CONCAT('문자열1','문자열2',...)
--- 인자로 전달된 문자열을 하나로 이어붙이는 함수이다.
--- 괄호 안에 들어간 문자열들을 순서대로 이어붙인다.
--- 문자열이 아닌 숫자도 자동으로 문자열로 변환해서 이어 붙인다.
-
-select
-	CONCAT('HELLO', 'WORLD'),
-	CONCAT('HELLO',' ','WORLD');
-
-select CONCAT('나이 : ',25,'세');
-
--- 고객 테이블에서 이름과 성을 연결하여 조회하기
-select CONCAT(FIRST_NAME,' ',LAST_NAME)
-from customer_practice cp;
-
--- REPLACE(문자열, OLD, NEW)
--- 문자열 안에 있는 OLD 문자열을 찾아서 NEW 문자열로 치환
-
-select REPLACE('ABCDAB','AB','XY');
-
--- 공백 문자 치환
-select REPLACE('Hello world',' ', '');
-
--- 없는 문자열을 찾으려고 하면 그대로 반환한다.
-
--- REPEAT(문자열, 횟수)
--- 같은 문자열을 여러 번 반복해서 이어붙이고 싶을 때
-select REPEAT('ABC',3);
-select REPEAT('*',5);
-
-CREATE TABLE member (
-  id INT PRIMARY KEY,
-  name VARCHAR(50),
-  email VARCHAR(100),
-  phone VARCHAR(50),
-  nickname VARCHAR(50)
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    customer VARCHAR(50),
+    order_date DATE,
+    ship_date DATE,
+    price INT
 );
 
-INSERT INTO member VALUES
-(1, '홍길동', 'gildong@test.com', '010-1234-5678', '길동이'),
-(2, '김영희', 'younghee@test.com', '010-999-8888', '영희짱'),
-(3, '이철수', 'chulsoo@oldmail.com', '010-7777-3333', '철수'),
-(4, 'Jane', 'jane@example.com', '010-1212-3434', NULL);
+INSERT INTO orders (customer, order_date, ship_date, price) VALUES
+('홍길동', '2025-01-02', '2025-01-05', 30000),
+('이몽룡', '2025-01-10', '2025-01-12', 45000),
+('성춘향', '2024-12-28', '2025-01-03', 52000),
+('김철수', '2025-02-01', '2025-02-03', 15000),
+('박영희', '2025-02-10', NULL, 22000);  -- 아직 배송되지 않음
 
--- 이름과 이메일을 하나의 문자열로 합쳐서 출력하기
--- 홍길동 - GILDONG@TEST.COM
-select CONCAT(NAME, ' - ', EMAIL) from member;
--- 전화번호에서 하이픈을 모두 제거한 결과 출력하기
--- 01012345678
-select REPLACE(PHONE, '-','') from member;
--- 이름을 3번 반복하여 출력하기
--- 홍길동홍길동홍길동
-select REPEAT(NAME, 3) from member;
--- 이메일 도메인에서 @TEST.COM은 @SCHOOL.COM으로 변경하여 출력하기
-select replace(EMAIL,'@test.com','@school.com') from member;
--- 전화번호 앞 3자리는 그냥 두고 뒤 숫자는 *로 마스킹하기
--- 010-****-****
-select concat(
-		left(phone,3),
-		'-',
-		repeat('*',char_length(substring_index(substring_index(phone,'-',2),'-',-1))),
-		'-',
-		repeat('*',char_length(substring_index(phone,'-',-1))))
-from member;
+-- 주문테이블에서 고객의 이름과 주문날짜의 년,월,일을 조회하세요
+select customer,
+	year(order_date),
+	month(order_date),
+	day(order_date)
+	from orders;
 
--- substring_inex('문자열','구분자',개수)
--- 구분자를 기준으로 문자열을 나누고 앞 또는 뒤에서 
--- 원하는 부분만 가져오는 함수
-select substring_index('a-b-c-d','-',-2);
+-- 배공까지 걸린 일수를 이름과 함께 조회하기
+select customer,
+	DATEDIFF(ship_date,order_date)
+from orders
+where ship_date is not null;
 
--- 이름의 글자수와 닉네임의 글자수 구하기
--- 홍길동 3 길동이 3
-select name, char_length(name), nickname, char_length(nickname) from member;
--- 전화번호가 010으로 시작하지 않는 회원을 찾고 "국내번호 아님: 전화번호"를 붙여서 출력하기
-select
-	concat('국내번호 아님 : ', phone)
-from member
-where left(phone,3) <> '010';
+-- 2025년 1월에 주분된 주문만 조회
+select * from orders
+where year(order_date) = 2025
+and month(order_date) = 1;
+
+-- 주문날짜를 기준으로 2024년에 주문된 기록만 조회
+select * from orders
+where year(order_date) = 2024;
+-- where year(order_date) = year(curdate())-1;
+
+DROP TABLE IF EXISTS EMPLOYEES;
+
+CREATE TABLE EMPLOYEES (
+    EMPLOYEE_ID INT PRIMARY KEY,
+    FIRST_NAME VARCHAR(50),
+    LAST_NAME VARCHAR(50),
+    EMAIL VARCHAR(100),
+    HIRE_DATE DATE,
+    JOB_ID VARCHAR(20),
+    SALARY INT,
+    COMMISSION_PCT DECIMAL(3,2),
+    MANAGER_ID INT,
+    DEPARTMENT_ID INT
+);
+
+INSERT INTO EMPLOYEES VALUES
+(100, 'Steven', 'King', 'SKING', '2003-06-17', 'AD_PRES', 24000, NULL, NULL, 90),
+(101, 'Neena', 'Kochhar', 'NKOCHHAR', '2005-09-21', 'AD_VP', 17000, NULL, 100, 90),
+(102, 'Lex', 'De Haan', 'LDEHAAN', '2001-01-13', 'AD_VP', 17000, NULL, 100, 90),
+(103, 'Alexander', 'Hunold', 'AHUNOLD', '2006-01-03', 'IT_PROG', 9000, NULL, 102, 60),
+(104, 'Bruce', 'Ernst', 'BERNST', '2007-05-21', 'IT_PROG', 6000, NULL, 103, 60),
+(105, 'David', 'Austin', 'DAUSTIN', '2005-06-25', 'IT_PROG', 4800, NULL, 103, 60),
+(106, 'Valli', 'Pataballa', 'VPATABAL', '2006-02-05', 'IT_PROG', 4800, NULL, 103, 60),
+(107, 'Diana', 'Lorentz', 'DLORENTZ', '2007-02-07', 'IT_PROG', 4200, NULL, 103, 60),
+(108, 'Nancy', 'Greenberg', 'NGREENBE', '2002-08-17', 'FI_MGR', 12000, NULL, 101, 100),
+(109, 'Daniel', 'Faviet', 'DFAVIET', '2002-08-16', 'FI_ACCOUNT', 9000, NULL, 108, 100),
+(110, 'John', 'Chen', 'JCHEN', '2005-09-28', 'FI_ACCOUNT', 8200, NULL, 108, 100),
+(111, 'Ismael', 'Sciarra', 'ISCIARRA', '2005-09-30', 'FI_ACCOUNT', 7700, NULL, 108, 100),
+(112, 'Jose Manuel', 'Urman', 'JMURMAN', '2006-03-07', 'FI_ACCOUNT', 7800, NULL, 108, 100),
+(113, 'Luis', 'Popp', 'LPOPP', '2007-12-07', 'FI_ACCOUNT', 6900, NULL, 108, 100),
+(114, 'Den', 'Raphaely', 'DRAPHEAL', '2002-12-07', 'PU_MAN', 11000, NULL, 100, 30),
+(115, 'Alexander', 'Khoo', 'AKHOO', '2003-05-18', 'PU_CLERK', 3100, NULL, 114, 30),
+(116, 'Shelli', 'Baida', 'SBAIDA', '2005-12-24', 'PU_CLERK', 2900, NULL, 114, 30),
+(117, 'Sigal', 'Tobias', 'STOBIAS', '2005-07-24', 'PU_CLERK', 2800, NULL, 114, 30),
+(118, 'Guy', 'Himuro', 'GHIMURO', '2006-11-15', 'PU_CLERK', 2600, NULL, 114, 30),
+(119, 'Karen', 'Colmenares', 'KCOLMENA', '2007-08-10', 'PU_CLERK', 2500, NULL, 114, 30);
+
+select * from EMPLOYEES
+
+-- 부서번호가 30번인 사원들의 이름을 출력하되, 이름 중 'el'을 모두 '**'로 마스킹 처리하여 출력
+select replace(first_name, 'el', '**')
+from employees
+where department_id = 30;
+
+-- 이름이 6글자 이상인 사원의 사번과 이름, 급여를 조회
+select FIRST_NAME, SALARY
+from EMPLOYEES
+where CHAR_LENGTH(FIRST_NAME) >=6;
+
+-- 이름과 사원번호를 출력하되, 사원번호는 짝수면 0, 홀수면 1로 출력
+select MOD(EMPLOYEE_ID,2), FIRST_NAME
+from EMPLOYEES;
+
+-- 사원번호가 짝수인 사람들의 사원번호와 이름 조회
+select EMPLOYEE_ID, FIRST_NAME
+from EMPLOYEES
+where MOD(EMPLOYEE_ID,2) =0;
+
+-- 사원테이블에서 이름, 급여, 1000당 ■로 개수를 채워 조회하기
+-- EX 홍길동 8000 ■■■■■■■■ (네모8개)
+select FIRST_NAME, SALARY, REPEAT('■',ROUND(SALARY/1000))
+from EMPLOYEES;
+
+-- 사원테이블에서 이름, 입사날짜, 6개월 뒤 입사날짜 순으로 조회
+select FIRST_NAME, HIRE_DATE, DATE_ADD(HIRE_DATE, INTERVAL 6 MONTH)
+from EMPLOYEES;
+
+-- 집계함수
+-- 여러 행의 값을 하나의 결과값으로 요약해주는 함수
+
+# 학생 점수를 저장한 score 테이블을 먼저 만들고 데이터를 넣는다.
+CREATE TABLE score (
+  id INT,
+  name VARCHAR(30),
+  subject VARCHAR(20),
+  point INT
+);
+
+INSERT INTO score VALUES
+(1, '홍길동', '국어', 85),
+(2, '김철수', '영어', 90),
+(3, '이영희', '수학', 78),
+(4, '박민수', '영어', 92),
+(5, '최다혜', '국어', NULL);
+
+-- COUNT()
+-- 값의 개수를 반환하는 함수
+select COUNT(POINT) from SCORE; -- 점수가 NULL이 아닌 개수
+select COUNT(NAME) from SCORE;
+select COUNT(*) from SCORE; -- NULL을 포함한 모든 행의 개수
+
+-- SUM()
+-- NULL은 제외한 총합을 구한다.
+select SUM(POINT) from SCORE;
+
+-- AVG()
+-- NULL을 제외하고 평균을 구한다.
+select AVG(POINT) from SCORE;
+
+-- MAX()
+-- 최대값을 구한다.
+select MAX(POINT) from SCORE;
+
+-- MIN()
+-- 최소값을 구한다.
+select MIN(POINT) from SCORE;
+
+-- 사원테이블에서 직종이(JOB_ID)가 'IT_PROG'인 사람들의
+-- 평균 급여, 급여 최고액, 급여 최저액, 급여의 총 합계를 출력
+select AVG(SALARY), MAX(SALARY), MIN(SALARY), SUM(SALARY)
+from EMPLOYEES
+where JOB_ID = 'IT_PROG';
+
+-- 100번 부서의 사원들의 급여의 평균(소수점 한자리까지)을 출력
+select ROUNT(AVG(SALARY),1)
+from EMPLOYEES
+where DEPARTMENT_ID = 100;
+
+-- 총 사원수
+select COUNT(*) from EMPLOYEES;
+
+-- 급여가 5000 이상인 사원들의 평균급여
+select AVG(SALARY)
+from EMPLOYEES
+where SALARY >= 5000;
+
+-- 2005년에 입사한 사원 수
+select COUNT(*)
+from EMPLOYEES
+where YEAR(HIRE_DATE) = 2005;
+
+-- 일반적으로 집계함수와 일반 속성의 조회는 SELECT절에서 불가능
+select JOB_ID, COUNT(*)
+from EMPLOYEES
+group by JOB_ID;
+
+-- GROUP BY로 묶은 속성은 SELECT에서 집계함수와 함께 사용 가능
+
+-- 사원테이블에서 각 직종별 급여의 합 구하기
+select JOB_ID, SUM(SALARY)
+from EMPLOYEES
+group by JOB_ID;
+
+-- 부서별로 가낭 높은 급여 조회
+select DEPARTMENT_ID, MAX(SALARY)
+from EMPLOYEES E
+group by DEPARTMENT_ID;
+
+-- 그룹별로 구분을 할 때 기준이 꼭 하나일 필요는 없다.
+select DEPARTMENT_ID, JOB_ID, COUNT(*)
+from EMPLOYEES
+-- where JOB_ID like '%PROG';
+group by DEPARTMENT_ID, JOB_ID;
 
 
--- customer_practice 테이블에서 이름의 첫글자만 남기고 나머지는 *로 마스킹하기
-select CONCAT(
-	left(FIRST_NAME,1),
-	RPAD('',CHAR_LENGTH(FIRST_NAME)-1,'*')) 
-from customer_practice cp ;
+-- 입사년도별 사원수를 조회, 년도 이름순으로 조회하기
+select YEAR(HIRE_DATE), COUNT(*)
+from EMPLOYEES
+group by YEAR(HIRE_DATE);
 
+-- 부서별로 최고 급여와 최저 급여의 차이를 구하세요.
+select DEPARTMENT_ID, MAX(SALARY)-MIN(SALARY)
+from EMPLOYEES
+group by DEPARTMENT_ID;
 
--- film테이블에서 제목이 'A'로 시작하는 영화만 조회하기 (LIKE X);
-select *
-from  film_practice fp 
-where LEFT(TITLE,1) = 'A';
+-- 이름에 'a'가 포함된 사원들만 대상으로, 이름 길이별 사원수를 구하세요.
+select CHAR_LENGTH(FIRST_NAME), COUNT(*)
+from EMPLOYEES
+where FIRST_NAME like '%a%'
+group by CHAR_LENGTH(FIRST_NAME)
 
-
-
-
-
-
-
-
-
-
+-- 입사일 기준 요일별 사원수를 구하세요.
+select DAYNAME(HIRE_DATE), COUNT(*)
+from EMPLOYEES
+group by DAYNAME(HIRE_DATE);
 

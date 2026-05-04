@@ -262,3 +262,90 @@ select DAYNAME(HIRE_DATE), COUNT(*)
 from EMPLOYEES
 group by DAYNAME(HIRE_DATE);
 
+
+-- having
+
+-- 급여가 5000 이상인 사원들을 디상으로
+-- 부서별 평균 급여가 7000 이상인 부서 조회하기
+select DEPARTMENT_ID, AVG(SALARY) 
+from EMPLOYEES
+where SALARY >= 5000
+group by DEPARTMENT_ID
+having AVG(SALARY) >= 7000;
+
+-- 많이 하는 실수
+-- where 절에 그룹함수 조건 걸기
+-- group by 안한 속성을 select에서 사용
+-- having 대신에 where 사용
+
+-- 부서별 사원수를 구하고 사원수가 3명 이상인 부서만 조회
+selecT DEPARTMENT_ID, COUNT(*)
+from EMPLOYEES E
+group by DEPARTMENT_ID
+having COUNT(*) >= 3;
+
+-- 부서별 최고 급여가 10000 이상인 부서 조회
+selecT DEPARTMENT_ID, MAX(SALARY)
+from EMPLOYEES
+group by DEPARTMENT_ID
+having MAX(SALARY) >= 10000;
+
+-- 입사년도별 사원수 중 5명 이상인 년도만 출력
+select year(HIRE_DATE), COUNT(*)
+from EMPLOYEES
+group by year(HIRE_DATE)
+having COUNT(*) >= 5;
+
+DROP TABLE IF EXISTS sales;
+
+CREATE TABLE sales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(50),
+    amount INT,
+    sale_date DATE
+);
+
+INSERT INTO sales (category, amount, sale_date) VALUES
+('식품', 80000, '2025-01-01'),
+('식품', 70000, '2025-01-02'),
+('식품', 60000, '2025-01-03'),
+
+('전자제품', 250000, '2025-01-01'),
+('전자제품', 150000, '2025-01-02'),
+
+('의류', 30000, '2025-01-01'),
+('의류', 25000, '2025-01-03'),
+
+('도서', 12000, '2025-01-02'),
+
+('가구', 180000, '2025-01-03'),
+('가구', 50000, '2025-01-04'),
+
+('문구', 10000, '2024-12-31'),
+('문구', 15000, '2025-01-02');
+
+select * from sales
+
+-- 판매가 2번 이상 발생한 카테고리만 조회
+select category, count(*)
+from sales
+having count(*) >= 2;
+
+-- 카테고리별 평균 결제 금액이 100,000원 이상인 것만 조회
+select amount, avg(amount)
+
+-- 2025-01-02 이후의 거래만 대상, 카테고리별 총액이 20,000원 이상인 경우만 조회
+
+
+
+
+
+
+
+
+
+
+
+
+
+

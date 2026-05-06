@@ -324,28 +324,168 @@ INSERT INTO sales (category, amount, sale_date) VALUES
 ('문구', 10000, '2024-12-31'),
 ('문구', 15000, '2025-01-02');
 
+INSERT INTO sales (category, amount, sale_date) VALUES
+
+-- 2024 데이터 보강
+('식품', 50000, '2024-01-02'),
+('식품', 40000, '2024-01-03'),
+('전자제품', 120000, '2024-02-01'),
+('전자제품', 80000, '2024-02-03'),
+('의류', 20000, '2024-03-01'),
+('가구', 90000, '2024-03-05'),
+
+-- 2026 데이터 추가
+('식품', 90000, '2026-01-01'),
+('식품', 70000, '2026-01-02'),
+('전자제품', 300000, '2026-01-03'),
+('전자제품', 200000, '2026-01-04'),
+('의류', 60000, '2026-02-01'),
+('도서', 15000, '2026-02-03'),
+('가구', 250000, '2026-03-01'),
+('가구', 100000, '2026-03-05');
+
 select * from sales
 
 -- 판매가 2번 이상 발생한 카테고리만 조회
 select category, count(*)
 from sales
+group by category
 having count(*) >= 2;
 
 -- 카테고리별 평균 결제 금액이 100,000원 이상인 것만 조회
-select amount, avg(amount)
+select category, avg(amount)
+from sales
+group by category
+having avg(amount) >= 100000;
 
 -- 2025-01-02 이후의 거래만 대상, 카테고리별 총액이 20,000원 이상인 경우만 조회
+select category, sum(amount)
+from sales
+where sale_date >= 2025-01-02
+group by category
+having sum(amount) >= 20000;
+
+-- 카테고리별 총 판매 금액을 구하되, 판매금액이 200,000원 이상인 카테고리만 조회
+select category, sum(amount)
+from sales
+group by category
+having sum(amount) >= 200000;
+
+-- 카테고리별 가장 큰 판매금액을 구화되, 가장 큰 금액이 200,000원 이상인 카테고리만 조회
+select category, max(amount)
+from sales s
+group by category
+having max(amount) >= 200000;
+
+-- 카테고리별 판매 총액을 구한 뒤, 총 판매금액이 50,000이상인 카테고리만 조회
+select category, sum(amount)
+from sales
+group by category
+having sum(amount) >= 50000;
+
+-- 2025년 1월 1일에 판매된 데이터만 대상으로 하여 카테고리별 판매 총액 구하기
+-- 총 판매 금액이 20,000 이상인 것만 조회
+select category, sum(amount)
+from sales s
+where sale_date = '2025-01-01'
+group by category
+having sum(amount) >= 20000;
 
 
+-- ROLLUP
+-- GROUP BY가 그룹별로 집계를 해준다면, ROLLUP은 소계와 총계까지 한 번에 만드는 기능
+
+-- 아래에서 위로 합계를 말아 올리는 기능
+select category, sum(amount)
+from sales
+group by category;
+
+-- ROLLUP을 사용하여 카테고리별 합계와 전체합계를 같이 조회
+select IFNULL(category, 전체), sum(amount)
+from sales
+group by category with rollup;
 
 
+-- 년도별 + 카테고리별 ROLLUP
+select
+	(year(sale_date),
+	category,
+	sum(amount)
+from sales
+group by year(sale_date), category
+with rollup;
+-- 년도 + 카테고리별 합계
+-- 년도별 합계
+-- 전체 합계
 
 
+select count(e.commission_pct)
+from employees e;
+
+-- sales 테이블에서 카테고리의 개수 세기
+select count(distinct category)
+from sales;
 
 
+-- IFNULL(컬럼, 대체값)
+select first_name, salary, ifnull(e.commission_pct, 0)
+from employees e;
+
+select * from employees where SALARY is null;
+
+-- 전체 급여 평균
+select AVG(IFNULL(SALARY, 0))
+from EMPLOYEES;
 
 
+-- 형변환 함수
+-- CAST(값 AS 타입);
+-- CHAR : 문자열
+-- SIGNED : 정수
+-- DECIMAL : 소수
+-- DATE : 날짜
+
+-- 사원테이블에서 사원번호, 사원명, 급여 조회, 급여는 '급여 : xxx' 형태
+select EMPLOYEE_ID, FIRST_NAME, CONCAT('급여 : ',cast(SALARY as CHAR))
+from employees;
+
+-- ORDER BY
+-- 쿼리 결과에 반환되는 행들을 특정 기준으로 정렬하고자 할 때 사용
+-- ORDER BY절은 SELECT절의 가장 마지막에 기술
+-- ASC : 오름차순(생략가능)
+-- DESC : 내림차순(생략불가);
+
+-- 사원테이블에서 급여를 많이 받는 순으로 사번, 이름, 급여를 출력하기
+select EMPLOYEE_ID, first_NAME, SALARY
+from EMPLOYEES
+where SALARY is not NULL
+order by SALARY asc, HIRE_DATE DESC;
+
+select * from EMPLOYEES order by 7 asc;
 
 
+-- 순위를 구하는 함수
+-- 행마다 순위를 붙여주는 함수
 
+-- RANK() OVER(정렬)
+select
+	RANK()OVER(order by SALARY DESC),
+	FIRST_NAME,
+	SALARY
+from EMPLOYEES;
+-- 공동 순위 발생
+-- 다음 순위 건너 뜀
 
+-- DENSE_RANK : 공동순위는 있지만 건너뛰지 않음
+select
+	DENSE_RANK()OVER(order by SALARY DESC),
+	FIRST_NAME,
+	SALARY
+from EMPLOYEES;
+
+-- ROW_number() : 무조건 순서대로 번호
+select
+	ROW_NUMBER()OVER(order by SALARY desC),
+	FIRST_NAME,
+	SALARY
+from EMPLOYEES;

@@ -1,0 +1,17 @@
+ddl 테이블 만들기
+
+dml
+select
+insert
+update
+delete
+
+집계함수(sum, count, min, avg, max)
+ㄴ group by, having
+index
+
+subquery
+
+join
+
+view

@@ -1,0 +1,22 @@
+20260513
+
+---
+
+Java와 MySQL 연동하기
+
+Java가 MySQL과 연동되려면 JDBC Driver가 필요함
+
+JDBC(Java DataBase Connectivity) Driver란?
+- Java 프로그램과 데이터베이스를 연결해주는 통로
+- Java와 DB를 연결
+- SQL을 전달 후 결과를 받아옴
+
+DBMS 회사마다 JDBC Driver가 다름
+MySQL -> mysql-connector-j
+Oracle -> ojdbc
+PostgreSQL -> postgresql
+
+
+
+
+

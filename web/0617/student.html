@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #f5f5f5;
+            font-family: Arial;
+        }
+
+        h1{
+            color:navy;
+            font-size:30px;
+        }
+
+        .regist{
+            border:2px solid black
+        }
+
+        table {
+            border: 2px solid black;
+        }
+
+        table th, table td {
+            border: 1px solid gray;
+        }
+
+        table thead tr {
+            background-color: #dddddd;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>수강생 관리 화면</h1>
+
+    <div class="regist">
+        <h2>수강생 등록</h2>
+
+        이름 <input type="text" placeholder="이름을 입력하세요">
+
+        과정 선택
+        <select>
+            <option>HTML 기초</option>
+            <option>CSS 기초</option>
+            <option>화면 설계</option>
+        </select>
+
+        <input type="button" value="등록">
+    </div>
+
+    <h2>수강생 목록</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>과정명</th>
+                <th>출석 상태</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>김학생</td>
+                <td>HTML 기초</td>
+                <td>출석</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>이학생</td>
+                <td>CSS 기초</td>
+                <td>지각</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>박학생</td>
+                <td>화면 설계</td>
+                <td>결석</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>

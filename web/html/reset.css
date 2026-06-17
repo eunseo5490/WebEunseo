@@ -1,0 +1,26 @@
+
+/* */
+*{
+    margin:0; /* 바깥쪽 여백 */
+    padding:0; /* 안쪽 여백 */
+    box-sizeing:border-box;
+    /* CSS에서 요소의 실제 크기를 계산하는 방식
+    border-box : 박스 크기를 딱 정한 크기대로 유지해주는 옵션 */
+}
+
+/* body의 기본 글꼴을 설정한다. */
+body{
+    font-family: Arial,sans-serif;
+    line-height: 1.5; /* 줄 간격 */
+}
+
+/* 목록의 점 제거 */
+ul, ol{
+    list-style:none;
+}
+
+/* 링크의 빝줄을 제거  */
+a{
+    text-decoration:none;
+    color:inherit; /* 부모 요소의 글씨 색을 따라간다. */
+}

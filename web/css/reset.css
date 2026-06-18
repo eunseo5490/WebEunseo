@@ -3,7 +3,7 @@
 *{
     margin:0; /* 바깥쪽 여백 */
     padding:0; /* 안쪽 여백 */
-    box-sizeing:border-box;
+    box-sizing:border-box;
     /* CSS에서 요소의 실제 크기를 계산하는 방식
     border-box : 박스 크기를 딱 정한 크기대로 유지해주는 옵션 */
 }

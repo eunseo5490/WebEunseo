@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            background-color: #f2f4f5;
+            margin:50px;
+        }
+
+        div.card{
+            width:400px;
+            background-color: #f8f9fa;
+            border:1px solid #dee2e6;
+            border-radius: 12px;
+            padding:20px;
+            margin-bottom:20px
+        }
+
+        div.user-list div.card:first-child{
+            border-color:#3498db;
+            border-width:2px;
+        }
+
+        div.user-list div.card:nth-child(2){
+            background-color: #fffcf0;
+        }
+
+        .card span.role-badge{
+            font-size:14px;
+            padding:3px 8px;
+            border-radius: 4px;
+        }
+
+        .role-badge.admin{
+            background-color: #e74c3c;
+            color:#fff;
+        }
+
+        .role-badge.member{
+            background-color: #2ecc71;
+            color:#fff;
+        }
+
+        div.user-list div.card:hover{
+            background-color: #e9ecef;
+            cursor:pointer;
+        }
+
+        input:checked + label {
+            color:#9b59b6;
+            font-weight: bold;
+        }
+
+        h3{
+            margin:0px 0px 10px 0px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h2>유저 관리 대시보드</h2>
+    
+    <div class="user-list">
+        <div class="card">
+            <h3 class="user-name">홍길동 대리</h3>
+
+            <span class="role-badge admin">관리자</span>
+
+            <br><br>    
+            <input type="checkbox">
+            <label for="input">현재 직업 멤버로 선택</label>
+        </div>
+        <div class="card">
+            <h3 class="user-name">이영희 사원</h3>
+
+            <span class="role-badge member">일반 회원</span>
+
+            <br><br>       
+            <input type="checkbox">
+            <label for="input">현재 직업 멤버로 선택</label>
+        </div>
+        <div class="card">
+            <h3 class="user-name">김철수 사원</h3>
+
+            <span class="role-badge member">일반 회원</span>
+
+            <br><br>      
+            <input type="checkbox">
+            <label for="input">현재 직업 멤버로 선택</label>
+        </div>
+    </div>
+
+</body>
+</html>

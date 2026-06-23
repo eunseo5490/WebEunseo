@@ -1,0 +1,32 @@
+memo
+
+---
+
+display: flex; /* 로 쓸 수 있는 기본적인 정렬 설정은 */
+justify-content: center; /* 가로 중앙 정렬 */
+align-items: center; /* 세로 중앙 정렬 */
+
+---
+
+justify-content의 속성 종류
+
+flex-start
+⬅️ [A][B][C]
+
+flex-end
+[A][B][C] ➡️
+
+center
+⬅️ [A][B][C] ➡️
+
+space-between
+[A] ↔️ [B] ↔️ [C]
+
+space-around
+↔️ [A] ↔️ [B] ↔️ [C] ↔️
+
+---
+
+
+
+

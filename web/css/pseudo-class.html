@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .h-btn{
+            background-color: skyblue;
+            padding:10px 20px;
+        }
+
+        /* 버튼에 마우스를 올린 상태 */
+        .h-btn:hover{
+            background-color: orange;
+        }
+
+        
+
+        input{
+            border:2px solid gray;
+            padding:10px;
+        }
+
+        /* 입력창을 클릭했을 때 */
+        /* input:focus{
+            border:2px solid blue;
+        } */
+
+        a:link{
+            color:#3498db;
+        }
+
+
+
+
+
+
+
+
+        input:required{
+            border:2px solid orange;
+        }
+
+        input:valid{
+            border-color:green;
+        }
+        /* 잘못된 값이 입력된 상태 */
+        input:invaild{
+            outline:none;
+            border-color:red;
+        }
+
+
+        /* li중에 첫번째 */
+        ul li:first-child{
+            font-weight:bold;
+            color:#2980b9;
+        }
+
+        ul li:last-child{
+            font-weight:bold;
+            color:red;
+        }
+
+        ul li:nth-child(3){
+            font-weight: bold;
+            color:green;
+        }
+
+
+
+
+
+
+
+
+
+        /* highlight 클래스값이 없는 태그를 선택 */
+        p:not(.highlight){
+            color:#7f8c8d;
+        }
+
+        /* 언어가 en으로 된 태그 */
+        p:lang(en){
+            font-style:italic;
+            color:#3980e9;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- 동적 의사 클래스
+    - 사용자의 동작에 따라 상태가 바뀌는 의사 클래스
+    ※ 의사 클래스 : 특정 상태에 있는 요소를 선택하는 CSS 선택자 -->
+
+    <!-- hover:마우스를 올렸을 때 -->
+    <button class="h-btn">버튼</button>
+    <br><br>
+
+    <input type="text" placeholder="이름입력">
+    <br><br>
+
+
+    <a href="#">Example 링크</a>
+    <br><br>
+
+    <hr>
+
+
+
+    <input type="text" placeholder="입력가능">
+    <br><br>
+    <input type="text" placeholder="입력불가능">
+    <br><br>
+    <input type="text" required placeholder="필수사항">
+    <br><br>
+    <input type="text" required placeholder="이메일입력">
+    <br><br>
+
+    <hr>
+
+    <h2>구조 의사 클래스</h2>
+    
+    <ul>
+        <li>첫 번째 항목</li>            
+        <li>두 번째 항목</li>
+        <li>세 번째 항목</li>
+        <li>네 번째 항목</li>
+        <li>다섯 번째 항목</li>
+    </ul>
+
+    <p>첫 번째 문단</p>
+    <p>두 번째 문단</p>
+    <div>이것은 div 문단</div>
+
+
+
+
+
+
+    <hr>
+
+    <h2>기타 의사 클래스</h2>
+</body>
+</html>

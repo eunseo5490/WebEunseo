@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+
+            transition: transform 0.5s;
+        }
+
+        .box:hover{
+            /* translate(x축, y축)
+            translateX(x축)
+            sranslateY(y축) */
+            /* transform: translate(150px, 200px); */
+            /* transform: rotate(-45deg); */
+            transform: scale(1.3) /*배수*/
+        }
+
+        .btn{
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: royalblue;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            animation: ease(0.3s);
+            transition:
+                backgrond-color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .btn:hover{
+            background-color: tomato;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- transform
+     요소를 움직이거나, 회전시키거나, 확대/축소하거나 기울기는 기능
+    transform: 함수(값)
+     -->
+
+    <div class="box"></div>
+
+    <button class="btn"></button>
+
+
+
+
+
+
+
+
+</body>
+</html>

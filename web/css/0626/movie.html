@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #111827;
+            color: white;
+        }
+
+        header{
+            padding: 0px 50px;
+            height: 60px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: #030712;
+            border-bottom: 1px solid #3a404b;
+        }
+
+        .logo{
+            font-size: 20px;
+            font-weight: 600;
+            color: #f74844;
+        }
+
+        header ul{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        header a{
+            font-size: 15px;
+            font-weight: 400;
+            color: white;
+
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        a:hover{
+            color: #f74844;
+            transform: scale(1.12);
+        }
+
+        .movie-main{
+            max-width: 1100px;
+            margin: 70px auto;
+            padding: 50px 0;
+            
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .poster{
+            width: 42%;
+            
+            border-radius: 18px;
+        }
+
+        .poster img{
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .movie-info{
+            flex: 1;
+        }
+
+        .badge{
+            display: inline-block;
+            padding: 8px, 14px;
+            border-radius: 20px;
+            background-color: #ef4444;
+            color: white;
+            margin-bottom: 18px;
+        }
+
+        .movie-info h1{
+            margin: 0 0 20px;
+            font-size: 48px;
+        }
+
+        .movie-info p{
+            color: #d1f5db;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .info-box{
+            margin: 28px 0;
+            padding: 20px;
+        }
+
+        .button-group{
+            display: flex;
+            gap: 16px;
+        }
+
+        .button-group button{
+            padding: 14px 26px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* 영화 추천 영역 */
+
+        .recommend-section{
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0;
+        }
+
+        .movie-list{
+            display: flex;
+            gap: 24px;
+        }
+
+        .small-movie{
+            flex: 1; /* 공간 차지 비율 */
+            padding: 22px;
+            border-radius: 14px;
+            background-color: #1f2937;
+            border: 1px solid #374151;
+        }
+
+        /* footer 영역 */
+        
+        footer{
+            text-align: center;
+            padding: 30px;
+            background-color: #030712;
+            color: #d1d5db;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">Movie Preview</div>
+
+        <nav class="menu">
+            <ul class="menu-list">
+                <li><a href="#">상영작</a></li>
+                <li><a href="#">예매</a></li>
+                <li><a href="#">이벤트</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="movie-main">
+            <div class="poster">
+                <img src="https://picsum.photos/500/700?movie-main" alt="영화 포스터">
+            </div>
+            <div class="info">
+                <span class="badge">이번 주 추천작</span>
+                <h1>Shadow City</h1>
+                <p class="description">
+                    어두운 도시를 배경으로 숨겨진 진실을 추적하는 액션 스릴러 영화입니다.<br>
+                    빠른 전개와 긴장감 있는 장면을 통해 관객에게 강한 몰입감을 제공합니다.
+                </p>
+                <div class="info-box">
+                    <p><strong>장르:</strong> 액션 / 스릴러</p>
+                    <p><strong>상영 시간:</strong> 128분</p>
+                    <p><strong>관람 등급:</strong> 15세 이상 관람가</p>
+                </div>
+                <div class="buttons">
+                    <button class="btn-primary">예매하기</button>
+                    <button class="btn-secondary">상세정보</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommend-section">
+
+            <h2>함께 보면 좋은 영화</h2>
+
+            <div class="movie-list">
+
+                <div class="small-movie">
+                    <h3>액션 무비</h3>
+                    <p>화려한 전투 장면과 빠른 전개가 돋보이는 영화입니다.</p>
+                </div>
+
+                <div class="small-movie">
+                    <h3>로맨스 무비</h3>
+                    <p>따뜻한 감성과 인물 간의 관계를 중심으로 전개됩니다.</p>
+                </div>
+
+                <div class="small-movie">
+                    <h3>애니메이션 무비</h3>
+                    <p>상상력 있는 화면과 가족이 함께 보기 좋은 이야기를 담았습니다.</p>
+                </div>
+
+            </div>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Movie Preview</p>
+    </footer>
+
+</body>
+</html>

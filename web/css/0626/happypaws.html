@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f3;
+            font-family: Arial;
+
+            display: flex; /*사이드바와 메인 컨텐츠 배치를 위해 필요*/
+            
+            min-height: 100vh;
+        }
+
+        .sidebar{
+            width: 240px;
+            background-color: #263238;
+            
+        }
+
+        .sidebar__logo{
+            margin: 0;
+            color: #ffcc80;
+            font-size: 26px;
+            font-weight: 600;
+            font-family: arial;
+            padding: 30px 20px;
+        }
+
+        .sidebar__menu{
+            display: flex;
+            flex-direction: column;
+            padding: 24px 40px;
+            gap: 42px;
+        }
+
+        .sidebar__menu a{
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            text-decoration: none;
+
+        }
+
+        /* main 영역 */
+
+        main{
+            padding: 30px;
+        }
+
+        .title{
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 24px 30px 30px 30px;
+            height: 129px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        .title h1{
+            margin: 0;
+            padding-bottom: 10px;
+            font-size: 33px;
+        }
+
+        .title p{
+            margin: 0;
+            color: #718c99;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .overview{
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 24px 30px 30px 30px;
+            height: 136px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        .overview__card p{
+            margin: 0;
+            color: #718c99;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .overview__card h1{
+            font-size: 34px;
+            color: #ef6c00;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar__logo">Happy Paws</div>
+
+        <nav class="sidebar__menu">
+            <a href="#">대시보드</a>
+            <a href="#">입양 관리</a>
+            <a href="#">보호 동물</a>
+            <a href="#">봉사 일정</a>
+            <a href="#">후원 현황</a>
+        </nav>
+    </aside>
+
+
+    <main>
+
+        <header class="title">
+            <h1>입양 현황 대시보드</h1>
+            <p>오늘의 보호소 운영 현황을 한눈에 확인합니다.</p>
+        </header>
+    
+
+        <section class="overview">
+
+            <article class="overview__card">
+                <p>보호중</p>
+                <h1>28</h1>
+            </article>
+
+        </section>
+
+
+    </main>
+
+</body>
+</html>

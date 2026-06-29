@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 공통 스타일 */
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: "Malgun Gothic", Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #222;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        main{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header 영역 */
+
+        header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 24px 50px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1{
+            color: #e76f51;
+            font-size: 28px;
+
+            animation: slide 1s ease;
+        }
+
+        header p{
+            color: #555;
+        }
+
+        @keyframes slide{
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Navigation 영역 */
+
+        nav{
+            background-color: #264653;
+            padding: 16px;
+        }
+
+        nav ul{
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav a{
+            color: #ffffff;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            transform: scale(1.15);
+            opacity: 0.7;
+        }
+
+        /* Hero 영역 */
+        
+        .hero{
+            text-align: center;
+            background-color: #ffcc70;
+            padding: 60px 20px;
+        }
+
+        .hero h2{
+            font-size: 36px;
+            padding-bottom: 16px;
+        }
+
+        .hero strong{
+            color: #d62828;
+        }
+
+        .hero input{
+            width: 320px;
+            padding: 14px;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            font-size: 16px;
+            padding-top: 20px;
+            transition: 0.3s;
+        }
+        
+        .hero a{
+            background-color: #264653;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 8px;
+            padding-left: 8px;
+        }
+
+        .hero a:hover{
+            transform: translateY(-4px);
+            opacity: 0.8;
+        }
+
+        /* Main 영역 */
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 24px;
+        }
+
+        /* Sidebar 영역 */
+
+        aside{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            align-self: start;
+        }
+
+        aside img{
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            padding-bottom: 16px;
+        }
+
+        aside ul{
+            padding-left: 20px;
+        }
+
+        aside li{
+            line-height: 1.9;
+        }
+
+        /* Dashboard 영역 */
+
+        .dashboard{
+            display: grid;
+            gap: 24px;
+        }
+
+        /* Summary 영역 */
+
+        .summary{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .summary-card{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .summary-card h3{
+            color: #264653;
+        }
+
+        .summary-card p{
+            font-size: 30px;
+            font-weight: bold;
+            color: #e76f51;
+        }
+
+        .summary-card:hover{
+            transform: translateY(-10px);
+        }
+
+        /* Animal Card 영역 */
+
+        .animal-section{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .animal-list{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .animal-card{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.09);
+            opacity: 0.95;
+            transition: 0.3s;
+        }
+
+        .animal-card div{
+            padding: 16px;
+        }
+
+        .animal-card span{
+            display: inline-block;
+            padding: 6px 10px;
+            background-color: #2a9d8f;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .animal-card:hover{
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        /* Table 영역 */
+
+        .status-section{
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .status-section table{
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+
+        .status-section table th{
+            border: 1px solid #cccccc;
+            padding: 14px;
+            text-align: center;
+            
+            background-color: #264653;
+            color: #ffffff;
+        }
+
+        .status-section table td{
+            border: 1px solid #cccccc;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .status-section table tbody tr:hover{
+            background-color: #fff3d6;
+        }
+
+        /* Footer 영역 */
+
+        footer{
+            text-align: center;
+            padding: 30px;
+            background-color: #222222;
+            color: #ffffff;
+        }
+
+        /* 반응형 조건 영역 */
+
+        @media (max-width: 768px){
+            header{
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding: 24px;
+            }
+
+            nav{
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .hero h2{
+                font-size: 28px;
+            }
+            .hero a{
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            main{
+                grid-template-columns: 1fr;
+            }
+
+            .summary{
+                grid-template-columns: 1fr;
+            }
+
+            .animal-list{
+                grid-template-columns: 1fr;
+            }
+
+            .status-section table{
+                font-size: 14px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Happy Paw 입양센터</h1>
+        <p>보호동물 관리 시스템</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">입양동물</a></li>
+            <li><a href="#">보호동물</a></li>
+            <li><a href="#">입양후기</a></li>
+            <li><a href="#">고객센터</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h2>오늘도 새로운 가족을 기다립니다</h2>
+        <p>Happy Paw는 보호동물과 <strong>새로운 가족</strong>을 연결하는 입양센터입니다.</p>
+
+        <input type="text" placeholder="동물 이름 또는 종류를 검색하세요">
+        <a href="#">검색하기</a>
+    </section>
+
+    <main>
+
+        <aside>
+            <img src="https://picsum.photos/300/200?random=1" alt="사이드바">
+
+            <h2>센터 담당자</h2>
+            <p>김하늘 매니저</p>
+            <p>입양 상담과 보호동물 관리를 담당합니다.</p>
+
+            <h2>공지사항</h2>
+            <p>주말 입양 상담은 사전 예약제로 운영됩니다.</p>
+            
+            <h2>입양 절차</h2>
+                <ul>
+                    <li>입양 동물 확인</li>
+                    <li>상담 신청서 작성</li>
+                    <li>센터 방문 상담</li>
+                    <li>입양 확정</li>
+                </ul>
+
+        </aside>
+
+        <div class="dashboard">
+
+            <section class="summary">
+                <div class="summary-card">
+                    <h3>전체 동물</h3>
+                    <p>36</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>입양 완료</h3>
+                    <p>18</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>보호 중</h3>
+                    <p>14</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>오늘 상담</h3>
+                    <p>7</p>
+                </div>
+            </section>
+
+            <section class="animal-section">
+                <h2>입양 가능한 동물</h2>
+
+                <div class="animal-list">
+                    <article class="animal-card" alt="초코">
+                        <img src="https://picsum.photos/300/200?random=2">
+                        <div>
+                            <h3>초코</h3>
+                            <p>산책을 좋아하는 활발한 강아지입니다.</p>
+                            <span>입양 가능</span>
+                            <a href="#">상세보기</a>
+                        </div>
+                    </article>
+
+                    <article class="animal-card" alt="나비">
+                        <img src="https://picsum.photos/300/200?random=3">
+                        <div>
+                            <h3>나비</h3>
+                            <p>조용하고 사람 곁을 좋아하는 고양이입니다.</p>
+                            <span>상담 중</span>
+                            <a href="#">상세보기</a>
+                        </div>
+                    </article>
+
+                    <article class="animal-card" alt="두부">
+                        <img src="https://picsum.photos/300/200?random=4">
+                        <div>
+                            <h3>두부</h3>
+                            <p>장난감 놀이를 좋아하는 밝은 강아지입니다.</p>
+                            <span>입양 가능</span>
+                            <a href="#">상세보기</a>
+                        </div>
+                    </article>
+
+                    <article class="animal-card" alt="모카">
+                        <img src="https://picsum.photos/300/200?random=5">
+                        <div></div>
+                        <h3>모카</h3>
+                        <p>낯을 조금 가리지만 적응하면 애교가 많습니다.</p>
+                        <span>보호 중</span>
+                        <a href="#">상세보기</a>
+                    </article>
+
+                    <article class="animal-card" alt="콩이">
+                        <img src="https://picsum.photos/300/200?random=6">
+                        <div>
+                            <h3>콩이</h3>
+                            <p>친구들과 잘 어울리는 사회성이 좋은 강아지입니다.</p>
+                            <span>입양 가능</span>
+                            <a href="#">상세보기</a>
+                        </div>
+                    </article>
+                    
+                    <article class="animal-card" alt="루루">
+                        <img src="https://picsum.photos/300/200?random=7">
+                        <div>
+                            <h3>루루</h3>
+                            <p>호기심이 많고 창밖 구경을 좋아합니다.</p>
+                            <span>상담 중</span>
+                            <a href="#">상세보기</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="status-section">
+                <h2>입양 현황</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>종류</th>
+                            <th>나이</th>
+                            <th>상태</th>
+                            <th>담당자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>초코</td>
+                            <td>강아지</td>
+                            <td>3살</td>
+                            <td>입양 가능</td>
+                            <td>김하늘</td>
+                        </tr>
+
+                        <tr>
+                            <td>나비</td>
+                            <td>고양이</td>
+                            <td>2살</td>
+                            <td>상담 중</td>
+                            <td>이보라</td>
+                        </tr>
+
+                        <tr>
+                            <td>두부</td>
+                            <td>강아지</td>
+                            <td>1살</td>
+                            <td>입양 가능</td>
+                            <td>박지훈</td>
+                        </tr>
+
+                        <tr>
+                            <td>모카</td>
+                            <td>고양이</td>
+                            <td>4살</td>
+                            <td>보호 중</td>
+                            <td>김하늘</td>
+                        </tr>
+
+                        <tr>
+                            <td>콩이</td>
+                            <td>강아지</td>
+                            <td>2살</td>
+                            <td>입양 가능</td>
+                            <td>이보라</td>
+                        </tr>
+
+                        <tr>
+                            <td>루루</td>
+                            <td>고양이</td>
+                            <td>1살</td>
+                            <td>상담 중</td>
+                            <td>박지훈</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Happy Paw 입양센터</p>
+        <p>문의: 010-1234-5678 / happypaw@example.com</p>
+    </footer>
+
+    
+</body>
+</html>
